@@ -1,0 +1,58 @@
+/**
+ * Localized titles/subtitles for legal pages (body/FAQs fall back to English where not set).
+ */
+const LEGAL_PAGE_LABELS = {
+  terms: {
+    en: { title: "Terms of Service", subtitle: "Please read these terms carefully." },
+    ga: { title: "Téarmaí Seirbhíse", subtitle: "Léigh na téarmaí seo go cúramach." },
+    de: { title: "Nutzungsbedingungen", subtitle: "Bitte lesen Sie diese Bedingungen sorgfältig." },
+    es: { title: "Términos de servicio", subtitle: "Lea estos términos con atención." },
+    it: { title: "Termini di servizio", subtitle: "Legga attentamente questi termini." },
+    no: { title: "Vilkår for bruk", subtitle: "Les disse vilkårene nøye." },
+    fi: { title: "Käyttöehdot", subtitle: "Lue nämä ehdot huolellisesti." },
+    da: { title: "Servicevilkår", subtitle: "Læs disse vilkår omhyggeligt." },
+    sv: { title: "Användarvillkor", subtitle: "Läs dessa villkor noggrant." },
+    fr: { title: "Conditions d'utilisation", subtitle: "Veuillez lire ces conditions attentivement." },
+    pt: { title: "Termos de serviço", subtitle: "Leia estes termos com atenção." },
+    nl: { title: "Servicevoorwaarden", subtitle: "Lees deze voorwaarden zorgvuldig." },
+    "en-GB": { title: "Terms of Service", subtitle: "Please read these terms carefully." },
+    "en-AU": { title: "Terms of Service", subtitle: "Please read these terms carefully." },
+    "de-AT": { title: "Nutzungsbedingungen", subtitle: "Bitte lesen Sie diese Bedingungen sorgfältig." },
+  },
+  privacy: {
+    en: { title: "Privacy Policy", subtitle: "Last updated May 2026." },
+    ga: { title: "Polasaí Príobháideachta", subtitle: "Nuashonraithe Bealtaine 2026." },
+    de: { title: "Datenschutzerklärung", subtitle: "Zuletzt aktualisiert Mai 2026." },
+    es: { title: "Política de privacidad", subtitle: "Última actualización mayo 2026." },
+    it: { title: "Informativa sulla privacy", subtitle: "Ultimo aggiornamento maggio 2026." },
+    no: { title: "Personvernerklæring", subtitle: "Sist oppdatert mai 2026." },
+    fi: { title: "Tietosuojakäytäntö", subtitle: "Päivitetty toukokuu 2026." },
+    da: { title: "Privatlivspolitik", subtitle: "Sidst opdateret maj 2026." },
+    sv: { title: "Integritetspolicy", subtitle: "Senast uppdaterad maj 2026." },
+    fr: { title: "Politique de confidentialité", subtitle: "Dernière mise à jour mai 2026." },
+    pt: { title: "Política de privacidade", subtitle: "Última atualização maio 2026." },
+    nl: { title: "Privacybeleid", subtitle: "Laatst bijgewerkt mei 2026." },
+    "en-GB": { title: "Privacy Policy", subtitle: "Last updated May 2026." },
+    "en-AU": { title: "Privacy Policy", subtitle: "Last updated May 2026." },
+    "de-AT": { title: "Datenschutzerklärung", subtitle: "Zuletzt aktualisiert Mai 2026." },
+  },
+  faq: {
+    en: { title: "Frequently Asked Questions", subtitle: "Quick answers to common questions." },
+    ga: { title: "Ceisteanna Coitianta", subtitle: "Freagraí tapa ar cheisteanna coitianta." },
+    de: { title: "Häufig gestellte Fragen", subtitle: "Schnelle Antworten auf häufige Fragen." },
+    es: { title: "Preguntas frecuentes", subtitle: "Respuestas rápidas a preguntas comunes." },
+    it: { title: "Domande frequenti", subtitle: "Risposte rapide alle domande comuni." },
+    no: { title: "Ofte stilte spørsmål", subtitle: "Raske svar på vanlige spørsmål." },
+    fi: { title: "Usein kysytyt kysymykset", subtitle: "Nopeita vastauksia yleisiin kysymyksiin." },
+    da: { title: "Ofte stillede spørgsmål", subtitle: "Hurtige svar på almindelige spørgsmål." },
+    sv: { title: "Vanliga frågor", subtitle: "Snabba svar på vanliga frågor." },
+    fr: { title: "Foire aux questions", subtitle: "Réponses rapides aux questions courantes." },
+    pt: { title: "Perguntas frequentes", subtitle: "Respostas rápidas a perguntas comuns." },
+    nl: { title: "Veelgestelde vragen", subtitle: "Snelle antwoorden op veelgestelde vragen." },
+    "en-GB": { title: "Frequently Asked Questions", subtitle: "Quick answers to common questions." },
+    "en-AU": { title: "Frequently Asked Questions", subtitle: "Quick answers to common questions." },
+    "de-AT": { title: "Häufig gestellte Fragen", subtitle: "Schnelle Antworten auf häufige Fragen." },
+  },
+};
+
+module.exports = { LEGAL_PAGE_LABELS };
