@@ -1,15 +1,15 @@
+const { parseClientOrigins } = require("../config/corsOrigins");
+
 /** Socket.IO for admin live visitor feed. */
 let adminNamespace = null;
 
 function initSocket(server) {
   const { Server } = require("socket.io");
-  const clientOriginRaw =
-    process.env.CLIENT_ORIGIN || "http://localhost:3000,http://localhost:3001";
-  const origins = clientOriginRaw.split(/[\s,]+/).filter(Boolean);
+  const origins = parseClientOrigins(process.env.CLIENT_ORIGIN);
 
   const io = new Server(server, {
     cors: {
-      origin: origins.length ? origins : ["http://localhost:3000", "http://localhost:3001"],
+      origin: origins,
       methods: ["GET", "POST"],
       credentials: true,
     },

@@ -8,6 +8,7 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const fileUpload = require("express-fileupload");
 
+const { parseClientOrigins } = require("./config/corsOrigins");
 const errorMiddleware = require("./middleware/errorMiddleware");
 const {
   authRateLimit,
@@ -68,19 +69,7 @@ if (process.env.NODE_ENV === "production" || process.env.TRUST_PROXY === "1") {
   app.set("trust proxy", 1);
 }
 
-const defaultClientOrigins = ["http://localhost:3000", "http://localhost:3001"];
-const clientOriginRaw =
-  process.env.CLIENT_ORIGIN ||
-  "http://localhost:3000,http://localhost:3001";
-const allowedOrigins = [
-  ...new Set(
-    clientOriginRaw
-      .split(/[\s,]+/)
-      .map((s) => s.trim())
-      .filter(Boolean)
-  ),
-];
-const corsOrigins = allowedOrigins.length ? allowedOrigins : defaultClientOrigins;
+const corsOrigins = parseClientOrigins(process.env.CLIENT_ORIGIN);
 
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
