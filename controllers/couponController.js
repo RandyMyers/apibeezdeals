@@ -220,6 +220,18 @@ exports.update = asyncHandler(async (req, res) => {
   }
 });
 
+async function deleteCouponDependents(publicIds) {
+  const pids = [...new Set((publicIds || []).filter(Boolean))];
+  if (!pids.length) return;
+  await Promise.all([
+    CouponComment.deleteMany({ couponPublicId: { $in: pids } }),
+    CouponVote.deleteMany({ couponPublicId: { $in: pids } }),
+    CouponLike.deleteMany({ couponPublicId: { $in: pids } }),
+    CouponView.deleteMany({ couponPublicId: { $in: pids } }),
+    UserSaving.deleteMany({ couponPublicId: { $in: pids } }),
+  ]);
+}
+
 /** Admin / API key — remove coupon and dependent engagement rows. */
 exports.destroy = asyncHandler(async (req, res) => {
   const pid = req.params.id;
@@ -229,13 +241,19 @@ exports.destroy = asyncHandler(async (req, res) => {
     err.status = 404;
     throw err;
   }
-  await Promise.all([
-    CouponComment.deleteMany({ couponPublicId: pid }),
-    CouponVote.deleteMany({ couponPublicId: pid }),
-    CouponLike.deleteMany({ couponPublicId: pid }),
-    CouponView.deleteMany({ couponPublicId: pid }),
-    UserSaving.deleteMany({ couponPublicId: pid }),
-    Coupon.deleteOne({ publicId: pid }),
-  ]);
+  await deleteCouponDependents([pid]);
+  await Coupon.deleteOne({ publicId: pid });
   res.status(204).send();
+});
+
+/** Admin — delete every coupon/deal and related engagement (stores unchanged). */
+exports.destroyAll = asyncHandler(async (req, res) => {
+  const coupons = await Coupon.find({}, { publicId: 1 }).lean();
+  const publicIds = coupons.map((c) => c.publicId).filter(Boolean);
+  if (!publicIds.length) {
+    return res.json({ deleted: 0 });
+  }
+  await deleteCouponDependents(publicIds);
+  const result = await Coupon.deleteMany({});
+  res.json({ deleted: result.deletedCount ?? publicIds.length });
 });

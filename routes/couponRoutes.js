@@ -19,6 +19,12 @@ router.post(
   requirePermission(PERMISSIONS.COUPONS_MANAGE),
   couponController.create
 );
+router.delete(
+  "/all",
+  optionalAuth,
+  requirePermission(PERMISSIONS.COUPONS_MANAGE),
+  couponController.destroyAll
+);
 
 router.put(
   "/:id/comments/:commentId",
